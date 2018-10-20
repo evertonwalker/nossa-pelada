@@ -1,8 +1,8 @@
 export class Jogador{
     cpf: string;
-    email: string;
     nome: string;
-    data: Date;
-    nota: number;
-    status: boolean;
+    idade: number;
+    telefone: string;
+    nota: number = 0;
+    status: boolean = false;
 }

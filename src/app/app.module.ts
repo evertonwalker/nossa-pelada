@@ -9,6 +9,9 @@ import { JogadorComponent } from './jogador/jogador.component';
 import { FormJogadorComponent } from './form-jogador/form-jogador.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule }    from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from './material.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { FormsModule }    from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
