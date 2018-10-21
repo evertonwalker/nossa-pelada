@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-3 mb-4">
+      <span class="h4">Efetuar pagamento do Jogador</span>
+    </div>
+  </div>
+</div>
+
+<div class="body-container">
+  <div class="container ">
+    <div class="row">
+      <div class="col-12 mt-2">
+        <form #pagamentoForm="ngForm" (ngSubmit)="salvarPagamento(pagamentoForm)">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Selecione o jogador*</label>
+              <ng-select [items]="jogadores" bindLabel="nome" [(ngModel)]="jogadorSelecionado" name="jogadorSelecionado">
+                <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                  <span class="ng-value-label">{{ item.nome }}</span>
+                </ng-template>
+
+              </ng-select>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Valor do pagamento</label>
+              <input type="text" class="form-control" id="inputPassword4" [(ngModel)]="pagamento.valor" name="valor"
+                placeholder="Pagamento" #valor="ngModel" required>
+              <small class="mt-1 text-danger" *ngIf="valor.errors?.required && valor.touched">
+                Valor é obrigatório
+              </small>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">Data do pagamento*</label>
+              <input type="date" class="form-control" required id="inputCity" [(ngModel)]="pagamento.dataPagamento"
+                name="dataPagamento" #dataPagamento="ngModel">
+              <small class="mt-1 text-danger" *ngIf="dataPagamento.errors?.required && dataPagamento.touched">
+                Data é obrigatório.
+              </small>
+            </div>
+          </div>
+          <a [routerLink]="['/']" class="btn btn-danger mr-3">Cancelar</a>
+          <button class="btn btn-save" [disabled]="!pagamentoForm.valid">Salvar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

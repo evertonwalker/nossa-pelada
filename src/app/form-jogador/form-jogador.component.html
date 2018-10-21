@@ -1,40 +1,55 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 mt-3">
+    <div class="col-12 mt-3 mb-4">
       <span class="h4">Formulário de Jogadores</span>
     </div>
   </div>
 </div>
-<hr>
 
-
-<div class="container ">
-  <div class="row">
-    <div class="col-12">
-      <form #jogadorForm="ngForm" (ngSubmit)="salvarOuAtualizarJogador(jogadorForm)">
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Nome</label>
-            <input type="text" class="form-control" id="inputEmail4" [(ngModel)]="jogador.nome" name="nome" placeholder="Nome">
+<div class="body-container">
+  <div class="container ">
+    <div class="row">
+      <div class="col-12 mt-2">
+        <form #jogadorForm="ngForm" (ngSubmit)="salvarOuAtualizarJogador(jogadorForm)">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Nome*</label>
+              <input type="text" class="form-control" id="inputEmail4" [(ngModel)]="jogador.nome" name="nome"
+                placeholder="Nome" required #nome="ngModel">
+              <small class="mt-1 text-danger" *ngIf="nome.errors?.required && nome.touched">
+                Nome é obrigatório.
+              </small>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Telefone*</label>
+              <input type="text" class="form-control" id="inputPassword4" [(ngModel)]="jogador.telefone" name="telefone"
+                placeholder="Telefone" #telefone="ngModel" required>
+              <small class="mt-1 text-danger" *ngIf="telefone.errors?.required && telefone.touched">
+                Telefone é obrigatório
+              </small>
+            </div>
           </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Telefone</label>
-            <input type="text" class="form-control" id="inputPassword4"  [(ngModel)]="jogador.telefone" name="telefone" placeholder="Telefone">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">Cpf*</label>
+              <input type="text" class="form-control" required id="inputCity" [(ngModel)]="jogador.cpf" name="cpf" placeholder="Cpf" #cpf="ngModel">
+              <small class="mt-1 text-danger" *ngIf="cpf.errors?.required && cpf.touched">
+                Cpf é obrigatório
+              </small>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputState">Idade do jogador*</label>
+              <input type="number" class="form-control" required id="inputCity" [(ngModel)]="jogador.idade" name="idade"
+                placeholder="Idade" #idade="ngModel">
+              <small class="mt-1 text-danger" *ngIf="idade.errors?.required && nome.touched">
+                Idade é obrigatório.
+              </small>
+            </div>
           </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputCity">Cpf</label>
-            <input type="text" class="form-control" id="inputCity"  [(ngModel)]="jogador.cpf" name="cpf" placeholder="Cpf">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputState">Idade do jogador</label>
-            <input type="number" class="form-control" id="inputCity"  [(ngModel)]="jogador.idade" name="idade" placeholder="Idade">
-          </div>
-        </div>
-        <a [routerLink]="['/jogador']" class="btn btn-danger mr-3">Cancelar</a>
-        <button class="btn btn-primary">Salvar</button>
-      </form>
+          <a [routerLink]="['/jogador']" class="btn btn-danger mr-3">Cancelar</a>
+          <button class="btn btn-save" [disabled]="!jogadorForm.valid">Salvar</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

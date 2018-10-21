@@ -1,14 +1,28 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" routerLink="/">Nossa pelada</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/jogador">Tela de Jogadores <span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+
+
+  <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary" class="example-toolbar">
+        <button mat-icon-button (click)="snav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <a class="mx-auto"  style="text-decoration:none;" routerLink="/">
+           <h2 class="text-light">Nossa pelada</h2>
+        </a>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+        <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+            fixedTopGap="56">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a (click)="hiddenSide(snav)" routerLinkActive="active" routerLink="/jogador">Jogadores</a></li>
+                <li class="list-group-item"><a (click)="hiddenSide(snav)" routerLinkActive="active" routerLink="/pagamento">Pagamento Jogadores</a></li>
+            </ul>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <div class="content-wrapper">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

@@ -12,6 +12,8 @@ import { FormsModule }    from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { PagamentoJogadorComponent } from './pagamento-jogador/pagamento-jogador.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppHeaderComponent,
     HomeComponent,
     JogadorComponent,
-    FormJogadorComponent
+    FormJogadorComponent,
+    PagamentoJogadorComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
