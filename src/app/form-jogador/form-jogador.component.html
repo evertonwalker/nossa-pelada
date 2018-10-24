@@ -41,7 +41,7 @@
               <label for="inputState">Idade do jogador*</label>
               <input type="number" class="form-control" required id="inputCity" [(ngModel)]="jogador.idade" name="idade"
                 placeholder="Idade" #idade="ngModel">
-              <small class="mt-1 text-danger" *ngIf="idade.errors?.required && nome.touched">
+              <small class="mt-1 text-danger" *ngIf="idade.errors?.required && idade.touched">
                 Idade é obrigatório.
               </small>
             </div>

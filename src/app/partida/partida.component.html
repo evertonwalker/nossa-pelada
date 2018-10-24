@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-3 mb-4">
+      <span class="h4">Partida</span>
+    </div>
+  </div>
+</div>
+
+<div class="body-container">
+  <div class="container ">
+    <div class="row">
+      <div class="col-12 mt-2">
+        <form #pagamentoForm="ngForm" (ngSubmit)="salvarPagamento(pagamentoForm)">
+          <mat-horizontal-stepper>
+            <mat-step label="Selecionar Jogadores e sortear">
+              <div class="row">
+                <div class="col-12">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label>Selecione o jogador*</label>
+                    <ng-select [items]="jogadores" bindLabel="nome" [multiple]="true" [closeOnSelect]="false"
+                      [(ngModel)]="jogadoresSelecionados" name="jogadorSelecionado">
+                      <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                        <span class="ng-value-label">{{ item.nome }}</span>
+                      </ng-template>
+                    </ng-select>
+                  </div>
+                </div>
+                </div>
+              </div>
+              <button class="btn btn-success" mat-button matStepperNext>Próxima</button>
+            </mat-step>
+            <mat-step label="Resultado da partida">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </mat-step>
+            <mat-step label="Pontuar jogadores">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </mat-step>
+          </mat-horizontal-stepper>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,13 +4,15 @@ import { HomeComponent } from './home/home.component';
 import { JogadorComponent } from './jogador/jogador.component';
 import { FormJogadorComponent } from './form-jogador/form-jogador.component';
 import { PagamentoJogadorComponent } from './pagamento-jogador/pagamento-jogador.component';
+import { PartidaComponent } from './partida/partida.component';
 
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'jogador', component: JogadorComponent },
     { path: 'jogador/new', component: FormJogadorComponent },
-    { path: 'pagamento', component: PagamentoJogadorComponent }
+    { path: 'pagamento', component: PagamentoJogadorComponent },
+    { path: 'partida', component: PartidaComponent}
 ];
 
 

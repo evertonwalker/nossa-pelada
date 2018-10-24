@@ -14,6 +14,7 @@ import { MaterialModule } from './material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { PagamentoJogadorComponent } from './pagamento-jogador/pagamento-jogador.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { PartidaComponent } from './partida/partida.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     HomeComponent,
     JogadorComponent,
     FormJogadorComponent,
-    PagamentoJogadorComponent
+    PagamentoJogadorComponent,
+    PartidaComponent
   ],
   imports: [
     BrowserModule,
