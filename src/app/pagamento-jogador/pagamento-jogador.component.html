@@ -14,7 +14,7 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label>Selecione o jogador*</label>
-              <ng-select [items]="jogadores" bindLabel="nome" [(ngModel)]="jogadorSelecionado" name="jogadorSelecionado">
+              <ng-select [items]="jogadores" bindLabel="nome" [(ngModel)]="pagamento.jogador" name="jogadorSelecionado">
                 <ng-template ng-label-tmp let-item="item" let-clear="clear">
                   <span class="ng-value-label">{{ item.nome }}</span>
                 </ng-template>

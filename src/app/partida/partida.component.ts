@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Jogador } from '../models/jogador.model';
 import { JogadorService } from '../jogador.service';
 import { tick } from '@angular/core/testing';
+import { Time } from '../models/time.model';
 
 @Component({
   selector: 'app-partida',
@@ -12,7 +13,10 @@ import { tick } from '@angular/core/testing';
 export class PartidaComponent implements OnInit {
 
   jogadores: Jogador[];
-  jogadoresSelecionados: Jogador[];
+  jogadoresSelecionados: Jogador[] = [];
+  timeUm: Time = new Time();
+  timeDois: Time = new Time ();
+  
 
   constructor(private jogadorService: JogadorService) { }
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Pagamento } from '../models/pagamento.model';
 import { Jogador } from '../models/jogador.model';
 import { JogadorService } from '../jogador.service';
+import { PagamentoService } from '../pagamento.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-pagamento-jogador',
@@ -11,10 +13,10 @@ import { JogadorService } from '../jogador.service';
 export class PagamentoJogadorComponent implements OnInit {
 
   pagamento: Pagamento = new Pagamento();
-  jogadorSelecionado: Jogador;
   jogadores: Jogador[] = [];
 
-  constructor(private jogadorService: JogadorService) { }
+  constructor(private jogadorService: JogadorService, private pagamentoService: PagamentoService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.jogadorService.listarJogadores()
@@ -22,6 +24,23 @@ export class PagamentoJogadorComponent implements OnInit {
         this.jogadores = result;
         console.log(result);
       }, error => console.log(error));
+  }
+
+  salvarPagamento(form) {
+    this.pagamentoService.inserirPagamento(this.pagamento)
+      .subscribe(result => {
+        this.snackBar.open(result.message, 'Fechar', {
+          duration: 3000
+        });
+        if (result.code === 200) {
+          form.reset();
+        }
+      }, error => {
+        this.snackBar.open('Ocorreu um erro ao realizar o pagamento do jogador, contate o suporte.', 'Fechar', {
+          duration: 3000
+        });
+        form.reset();
+      })
   }
 
 }

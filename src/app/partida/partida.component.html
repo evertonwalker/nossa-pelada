@@ -13,19 +13,95 @@
         <form #pagamentoForm="ngForm" (ngSubmit)="salvarPagamento(pagamentoForm)">
           <mat-horizontal-stepper>
             <mat-step label="Selecionar Jogadores e sortear">
-              <div class="row">
-                <div class="col-12">
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label>Selecione o jogador*</label>
-                    <ng-select [items]="jogadores" bindLabel="nome" [multiple]="true" [closeOnSelect]="false"
-                      [(ngModel)]="jogadoresSelecionados" name="jogadorSelecionado">
-                      <ng-template ng-label-tmp let-item="item" let-clear="clear">
-                        <span class="ng-value-label">{{ item.nome }}</span>
-                      </ng-template>
-                    </ng-select>
+              <div class="divGrande">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label>Selecione os jogadores*</label>
+                        <ng-select [items]="jogadores" bindLabel="nome" [multiple]="true" [closeOnSelect]="false"
+                          [(ngModel)]="jogadoresSelecionados" name="jogadorSelecionado">
+                          <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                            <span class="ng-value-label">{{ item.nome }}</span>
+                          </ng-template>
+                        </ng-select>
+                      </div>
+                      <div class="col-md-6 mt-4 text-center text-info font-weight-bold">
+                        Foram selecionado {{ jogadoresSelecionados.length }} Jogadores para serem sorteados.
+                      </div>
+                    </div>
+                    <div class="row mt-4">
+                      <div class="col-md-12 text-center">
+                        <button class="btn btn-save">Sortear jogadores</button>
+                      </div>
+                    </div>
+
+                    <div class="row mt-4">
+                      <div class="col-md-6 text-center">
+                        <h5>Time um</h5>
+                        <input type="text" class="form-control mt-2 mb-3" id="nomeTime" [(ngModel)]="timeUm.nome" name="timeUmNome"
+                          placeholder="Nome do time um">
+                        <table class="table">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th scope="col">Nome dos jogadores</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">Juca</th>
+                            </tr>
+                            <tr>
+                              <td scope="row">@fat</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Ronaldo</th>
+                            </tr>
+                            <tr>
+                              <th scope="row">Ronaldo</th>
+                            </tr>
+                            <tr>
+                              <th scope="row">Ronaldo</th>
+                            </tr>
+
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="col-md-6 text-center">
+                        <h5>Time dois</h5>
+                        <input type="text" class="form-control mt-2 mb-3" id="nomeTimeDois" [(ngModel)]="timeDois.nome" name="timeDoisNome"
+                          placeholder="Nome do time Dois">
+                        <table class="table">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th scope="col">Nome dos jogadores</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">Juca</th>
+                            </tr>
+                            <tr>
+                              <td scope="row">@fat</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">Ronaldo</th>
+                            </tr>
+                            <tr>
+                              <th scope="row">Ronaldo</th>
+                            </tr>
+                            <tr>
+                              <th scope="row">Ronaldo</th>
+                            </tr>
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+
                   </div>
-                </div>
+                  <!-- Fim da div conteúdo-->
                 </div>
               </div>
               <button class="btn btn-success" mat-button matStepperNext>Próxima</button>
