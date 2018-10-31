@@ -32,7 +32,7 @@
                     </div>
                     <div class="row mt-4">
                       <div class="col-md-12 text-center">
-                        <button class="btn btn-save">Sortear jogadores</button>
+                        <button  type="button" class="btn btn-save" (click)="sortearTimes()" [disabled]="verificarQuantidadeJogadores()">Sortear jogadores</button>
                       </div>
                     </div>
 
@@ -104,7 +104,9 @@
                   <!-- Fim da div conteúdo-->
                 </div>
               </div>
-              <button class="btn btn-success" mat-button matStepperNext>Próxima</button>
+              <div class="container">
+                <button class="btn btn-success" mat-button matStepperNext>Próxima</button>
+              </div>
             </mat-step>
             <mat-step label="Resultado da partida">
               <button mat-button matStepperPrevious>Back</button>

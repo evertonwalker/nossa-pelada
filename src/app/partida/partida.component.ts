@@ -27,4 +27,18 @@ export class PartidaComponent implements OnInit {
       }, error => console.log(error));
   }
 
+  verificarQuantidadeJogadores(){
+    let verify = true;
+    if(this.jogadoresSelecionados.length % 2 === 0 && this.jogadoresSelecionados.length > 5 ){
+      verify = false;
+    }
+    return verify;
+  }
+
+  sortearTimes(){
+    console.log(this.jogadoresSelecionados);
+    let a  = this.jogadoresSelecionados.sort()
+    console.log(a);
+  }
+
 }
