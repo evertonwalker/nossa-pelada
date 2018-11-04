@@ -12,7 +12,7 @@
       <div class="col-12 mt-2">
         <form #pagamentoForm="ngForm" (ngSubmit)="salvarPagamento(pagamentoForm)">
           <mat-horizontal-stepper>
-            <mat-step label="Selecionar Jogadores e sortear">
+            <mat-step label="Selecionar Jogadores e sortear" disabled="true">
               <div class="divGrande">
                 <div class="row">
                   <div class="col-12">
@@ -32,7 +32,8 @@
                     </div>
                     <div class="row mt-4">
                       <div class="col-md-12 text-center">
-                        <button  type="button" class="btn btn-save" (click)="sortearTimes()" [disabled]="verificarQuantidadeJogadores()">Sortear jogadores</button>
+                        <button type="button" class="btn btn-save" (click)="sortearTimes()" [disabled]="verificarQuantidadeJogadores()">Sortear
+                          jogadores</button>
                       </div>
                     </div>
 
@@ -47,74 +48,182 @@
                               <th scope="col">Nome dos jogadores</th>
                             </tr>
                           </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row">Juca</th>
+                          <tbody *ngIf="timeUm.jogadores !== undefined">
+                            <tr *ngFor="let jogador of timeUm.jogadores">
+                              <th scope="row"> {{ jogador.nome }} </th>
                             </tr>
-                            <tr>
-                              <td scope="row">@fat</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">Ronaldo</th>
-                            </tr>
-                            <tr>
-                              <th scope="row">Ronaldo</th>
-                            </tr>
-                            <tr>
-                              <th scope="row">Ronaldo</th>
-                            </tr>
-
                           </tbody>
                         </table>
                       </div>
                       <div class="col-md-6 text-center">
                         <h5>Time dois</h5>
-                        <input type="text" class="form-control mt-2 mb-3" id="nomeTimeDois" [(ngModel)]="timeDois.nome" name="timeDoisNome"
-                          placeholder="Nome do time Dois">
+                        <input type="text" class="form-control mt-2 mb-3" id="nomeTimeDois" [(ngModel)]="timeDois.nome"
+                          name="timeDoisNome" placeholder="Nome do time Dois">
                         <table class="table">
                           <thead class="thead-dark">
                             <tr>
                               <th scope="col">Nome dos jogadores</th>
                             </tr>
                           </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row">Juca</th>
+                          <tbody *ngIf="timeDois.jogadores !== undefined">
+                            <tr *ngFor="let jogador of timeDois.jogadores">
+                              <th scope="row"> {{ jogador.nome }} </th>
                             </tr>
-                            <tr>
-                              <td scope="row">@fat</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">Ronaldo</th>
-                            </tr>
-                            <tr>
-                              <th scope="row">Ronaldo</th>
-                            </tr>
-                            <tr>
-                              <th scope="row">Ronaldo</th>
-                            </tr>
-
                           </tbody>
                         </table>
                       </div>
                     </div>
-
 
                   </div>
                   <!-- Fim da div conteúdo-->
                 </div>
               </div>
               <div class="container">
-                <button class="btn btn-success" mat-button matStepperNext>Próxima</button>
+                <button class="btn btn-success" type="button" [disabled]="!verificarProximoPassoDois()" mat-button
+                  matStepperNext>Próxima</button>
               </div>
             </mat-step>
-            <mat-step label="Resultado da partida">
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+            <mat-step label="Partida">
+              <div class="divGrande">
+                <div class="row mb-2">
+                  <div class="col-12 text-center">
+                    <h2>Partida</h2>
+                  </div>
+                </div>
+
+                <div class="row text-center">
+                  <div class="col-5">
+                    <div class="row">
+                      <div class="col-10">
+                        <h4>{{ timeUm.nome }}</h4>
+                      </div>
+                      <div class="col-2">
+                        <h4>{{ qtdGolTimeUm }}</h4>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-2 ">
+                    <h2>X</h2>
+                  </div>
+
+                  <div class="col-5">
+                    <div class="row">
+                      <div class="col-2">
+                        <h4>{{ qtdGolTimeDois }}</h4>
+                      </div>
+                      <div class="col-10">
+                        <h4>{{ timeDois.nome }}</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-12 text-center mb-4 mt-4" *ngIf="verificarGol()">
+                    <h6>Gols feitos pelos jogadores</h6>
+                  </div>
+
+                  <div class="col-md-6">
+                    <ul *ngFor="let jogador of jogadoresQueFizeramGolTimeUm">
+                      <li>
+                        Nome: {{ jogador.jogador }} - Momento :{{ jogador.time }}
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul *ngFor="let jogador of jogadoresQueFizeramGolTimeDois">
+                      <li>
+                        Nome: {{ jogador.jogador }} - Momento: {{ jogador.time }}
+                      </li>
+                    </ul>
+                  </div>
+
+                </div>
+
+
+                <div class="row mt-4">
+                  <div class="col-md-12 text-center">
+                    <button type="button" class="btn btn-save" (click)="comecarPartida()" [disabled]="partidaComecou">
+                      Começar partida</button>
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col-12 text-center">
+                    <h5 #time *ngIf="!partidaAcabou">Tempo restante da partida: 10:00</h5>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12">
+                    <h6> Adicionar gol a partida: </h6>
+                  </div>
+                  <div class="form-group col-md-6" *ngIf="timeTotal.jogadores.length > 0">
+                    <select [(ngModel)]="jogadorFezGol" name="jogadorFezGol" class="form-control">
+                      <option *ngFor="let j of timeTotal.jogadores" [ngValue]="j">{{j.nome}}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 text-center">
+                    <button mat-mini-fab type="button" class="btn-success" (click)="adicionarGol()" [disabled]="!partidaComecou">
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="container">
+                <button class="btn btn-success" type="button" mat-button matStepperNext>Próxima</button>
+              </div>
             </mat-step>
-            <mat-step label="Pontuar jogadores">
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
+            <mat-step label="Resultado e pontuar jogadores">
+              <div class="divGrande">
+                <div class="row">
+                  <div class="col-12 text-center mb-4">
+                    <h2>O time vencedor foi : {{ timeVencedor() }}</h2>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 text-center">
+                  <h5>Pontue os jogadores que participaram da pelada.</h5>
+                </div>
+              </div>
+
+
+              <div class="row mt-3 mb-4">
+
+                <div class="col-6">
+                  <div class="col-12 text-center mb-3"> <h4> {{ timeUm.nome }} </h4> </div>
+                  <div class="row" *ngFor="let jogador of timeUm.jogadores">
+                    <div class="col-6">
+                      {{ jogador.nome }}
+                    </div>
+                    <div class="col-6">
+                      <input type="text" class="form-control mt-2 mb-3" id="nomeTimeDois" [(ngModel)]="jogador.nota"
+                        name="jogador.nome" placeholder="Nota do jogador">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="col-12 text-center mb-3"> <h4>{{ timeDois.nome }} </h4> </div>
+                  <div class="row" *ngFor="let jogador of timeDois.jogadores">
+                    <div class="col-6">
+                      {{ jogador.nome }}
+                    </div>
+                    <div class="col-6">
+                      <input type="text" class="form-control mt-2 mb-3" id="nomeTimeDois" [(ngModel)]="jogador.nota"
+                        name="jogador.nome" placeholder="Nota do jogador">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="container">
+                <button class="btn btn-success" type="button" mat-button matStepperNext>Finalizar</button>
+              </div>
             </mat-step>
           </mat-horizontal-stepper>
         </form>

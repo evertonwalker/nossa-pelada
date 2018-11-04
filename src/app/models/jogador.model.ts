@@ -4,5 +4,4 @@ export class Jogador{
     idade: number;
     telefone: string;
     nota: number = 0;
-    status: boolean = false;
 }
