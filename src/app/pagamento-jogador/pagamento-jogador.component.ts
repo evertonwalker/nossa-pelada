@@ -19,10 +19,11 @@ export class PagamentoJogadorComponent implements OnInit {
     private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    let jogador = new Jogador();
+    this.pagamento.jogador = jogador;
     this.jogadorService.listarJogadores()
       .subscribe(result => {
         this.jogadores = result;
-        console.log(result);
       }, error => console.log(error));
   }
 
@@ -39,7 +40,6 @@ export class PagamentoJogadorComponent implements OnInit {
         this.snackBar.open('Ocorreu um erro ao realizar o pagamento do jogador, contate o suporte.', 'Fechar', {
           duration: 3000
         });
-        form.reset();
       })
   }
 
