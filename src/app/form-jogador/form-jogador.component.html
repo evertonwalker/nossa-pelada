@@ -15,39 +15,39 @@
             <div class="form-group col-md-6">
               <label for="inputEmail4">Nome*</label>
               <input type="text" class="form-control" id="inputEmail4" [(ngModel)]="jogador.nome" name="nome"
-                placeholder="Nome" required #nome="ngModel">
-              <small class="mt-1 text-danger" *ngIf="nome.errors?.required && nome.touched">
-                Nome é obrigatório.
+                placeholder="Nome" >
+              <small class="mt-1 text-danger">
+               Apenas letras sem números.
               </small>
             </div>
             <div class="form-group col-md-6">
               <label for="inputPassword4">Telefone*</label>
               <input type="text" class="form-control" id="inputPassword4" [(ngModel)]="jogador.telefone" name="telefone"
-                placeholder="Telefone" #telefone="ngModel" required>
-              <small class="mt-1 text-danger" *ngIf="telefone.errors?.required && telefone.touched">
-                Telefone é obrigatório
+                placeholder="Telefone" maxlength="11"> <small class="mt-1 text-danger">
+                Apenas o ddd e o telefone, sem caracteres
               </small>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="inputCity">Cpf*</label>
-              <input type="text" class="form-control" required id="inputCity" [(ngModel)]="jogador.cpf" name="cpf" placeholder="Cpf" #cpf="ngModel">
-              <small class="mt-1 text-danger" *ngIf="cpf.errors?.required && cpf.touched">
-                Cpf é obrigatório
+              <label for="cpf">Cpf*</label>
+              <input type="text" class="form-control" id="cpf" [(ngModel)]="jogador.cpf" name="cpf"
+                placeholder="Cpf">
+              <small class="mt-1 text-danger" >
+                Apenas números, 11 caracteres sem os acentos.
               </small>
             </div>
             <div class="form-group col-md-6">
               <label for="inputState">Idade do jogador*</label>
               <input type="number" class="form-control" required id="inputCity" [(ngModel)]="jogador.idade" name="idade"
-                placeholder="Idade" #idade="ngModel">
-              <small class="mt-1 text-danger" *ngIf="idade.errors?.required && idade.touched">
+                placeholder="Idade">
+              <small class="mt-1 text-danger">
                 Idade é obrigatório.
               </small>
             </div>
           </div>
           <a [routerLink]="['/jogador']" class="btn btn-danger mr-3">Cancelar</a>
-          <button class="btn btn-save" [disabled]="!jogadorForm.valid">Salvar</button>
+          <button class="btn btn-save">Salvar</button>
         </form>
       </div>
     </div>

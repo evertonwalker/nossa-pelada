@@ -21,13 +21,15 @@ export class FormJogadorComponent implements OnInit {
   salvarOuAtualizarJogador(form) {
     this.jogadorService.cadastrarJogador(this.jogador)
       .subscribe(result => {
-          this.snackBar.open(result.message, 'Fechar', {
-            duration: 3000
-          });
+        this.snackBar.open(result.message, 'Fechar', {
+          duration: 4000
+        });
+        if (result.code === 200) {
           form.reset();
-      }, error => { 
+        }
+      }, error => {
         this.snackBar.open('Ocorreu um erro ao tentar inserir o jogador, contate o suporte.', 'Fechar', {
-          duration: 3000
+          duration: 4000
         });
         console.log(error);
       });
