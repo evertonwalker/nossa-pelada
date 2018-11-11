@@ -3,12 +3,14 @@ import { Jogador } from '../models/jogador.model';
 import { JogadorService } from '../jogador.service';
 import { Time } from '../models/time.model';
 import { MatSnackBar } from '@angular/material';
+import { PartidaService } from '../partida.service';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-partida',
   templateUrl: './partida.component.html',
   styleUrls: ['./partida.component.css'],
-  providers: [JogadorService]
+  providers: [JogadorService, PartidaService]
 })
 export class PartidaComponent implements OnInit {
 
@@ -28,7 +30,7 @@ export class PartidaComponent implements OnInit {
   partidaComecou = false;
   @ViewChild("time", { read: ElementRef }) time: ElementRef;
 
-  constructor(private jogadorService: JogadorService, private matSnackBar: MatSnackBar) { }
+  constructor(private jogadorService: JogadorService, private matSnackBar: MatSnackBar, private partidaService: PartidaService) { }
 
   ngOnInit() {
     this.timeUm.jogadores = [];
@@ -43,10 +45,45 @@ export class PartidaComponent implements OnInit {
 
   verificarQuantidadeJogadores() {
     let verify = true;
-    if (this.jogadoresSelecionados.length % 2 === 0 && this.jogadoresSelecionados.length > 7) {
+    if (this.jogadoresSelecionados.length % 2 === 0 && this.jogadoresSelecionados.length > 2) {
       verify = false;
     }
     return verify;
+  }
+
+  inserirTime(stepper) {
+
+    let timeUmSucesso = false;
+    let timeDoisSucesso = false;
+
+
+    this.partidaService.criarTimes(this.timeUm.nome, this.timeDois.nome)
+      .subscribe((data) => {
+        if (data.code === 200) {
+          this.partidaService.pegarIdTime(this.timeUm.nome).subscribe(data => {
+            this.timeUm.id = data.codigoTime;
+            this.partidaService.inserirJogadorETime(this.timeUm)
+              .subscribe(result => {
+                console.log(result);
+              }, error => console.log(error));
+
+          }, erro => console.log(erro));
+          this.partidaService.pegarIdTime(this.timeDois.nome).subscribe(data => {
+            this.timeDois.id = data.codigoTime;
+            this.partidaService.inserirJogadorETime(this.timeDois)
+              .subscribe(result => {
+                console.log(result);
+              }, error => console.log(error));
+
+          }, erro => console.log(erro));
+        }
+      }, (error) => console.log(error));
+
+
+    if (timeUmSucesso && timeDoisSucesso) {
+      stepper.next();
+    }
+
   }
 
   comecarPartida() {
@@ -54,7 +91,7 @@ export class PartidaComponent implements OnInit {
     this.startTimer(this.time);
   }
 
-  timeVencedor(){
+  timeVencedor() {
     return this.qtdGolTimeUm > this.qtdGolTimeDois ? this.timeUm.nome : this.timeDois.nome;
   }
 
@@ -119,7 +156,7 @@ export class PartidaComponent implements OnInit {
       seconds = seconds < 10 ? "0" + seconds : seconds;
 
       this.partidaAcabou = false;
-    
+
       if (--timer < 0) {
         alert("A partida acabou, vá para próxima tela.");
         clearInterval(contador);

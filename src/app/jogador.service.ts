@@ -29,7 +29,6 @@ export class JogadorService {
     return this.http.get<Jogador[]>('api/jogadoresPagos');
   }
 
-
   deletarJogador(cpf: number): Observable<ResponseHttp> {
     return this.http.delete<ResponseHttp>('api/jogador/' + cpf);
   }

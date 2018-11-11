@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-12 mt-2">
         <form #pagamentoForm="ngForm" (ngSubmit)="salvarPagamento(pagamentoForm)">
-          <mat-horizontal-stepper>
+          <mat-horizontal-stepper #stepper>
             <mat-step label="Selecionar Jogadores e sortear" disabled="true">
               <div class="divGrande">
                 <div class="row">
@@ -79,8 +79,8 @@
                 </div>
               </div>
               <div class="container">
-                <button class="btn btn-success" type="button" [disabled]="!verificarProximoPassoDois()" mat-button
-                  matStepperNext>Próxima</button>
+                <button class="btn btn-success" type="button" [disabled]="!verificarProximoPassoDois()" (click)="inserirTime(stepper)" mat-button
+                  >Próxima</button>
               </div>
             </mat-step>
             <mat-step label="Partida">

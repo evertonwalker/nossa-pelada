@@ -15,6 +15,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { PagamentoJogadorComponent } from './pagamento-jogador/pagamento-jogador.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PartidaComponent } from './partida/partida.component';
+import { PartidaService } from './partida.service';
+import { JogadorService } from './jogador.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,7 @@ import { PartidaComponent } from './partida/partida.component';
     BrowserAnimationsModule,
     NgSelectModule
   ],
-  providers: [],
+  providers: [PartidaService, JogadorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
