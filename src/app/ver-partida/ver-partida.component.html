@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-3 mb-4">
+      <span class="h4">Listagem de Partida</span>
+    </div>
+  </div>
+</div>
+
+<div class="body-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mt-2">
+
+        <div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Time Vencedor</th>
+                <th scope="col">Time um</th>
+                <th scope="col">Time dois</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let partida of partidas">
+                <th scope="row">{{ partida.id_partida }} </th>
+                <td>{{ getNome(partida.timeVencedor) }}</td>
+                <td>{{ getNome(partida.time1) }}</td>
+                <td>{{ getNome(partida.time2) }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

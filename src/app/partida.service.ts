@@ -28,4 +28,36 @@ export class PartidaService {
     return this.http.post<ResponseHttp>('api/timejogador/', time, httpOptions);
   }
 
+  inserirPartida(timeUm, timeDois): Observable<any> {
+    return this.http.post<any>('api/partida/', { timeUm, timeDois }, httpOptions);
+  }
+
+  pegarPartida(idTimeUm): Observable<any> {
+    return this.http.get<any>(`api/partida/${idTimeUm}`);
+  }
+
+  startedPartida(timeUm): Observable<any> {
+    return this.http.post<any>(`api/partidastart/`, { timeUm }, httpOptions);
+  }
+
+  inserirGol(partida, jogador): Observable<any> {
+    return this.http.post<any>(`api/gols/`, { partida, jogador, gol: 1 }, httpOptions);
+  }
+
+  finalizarPartida(partida, timeVencedor): Observable<any> {
+    return this.http.post<any>(`api/partidaend/`, { partida, timeVencedor }, httpOptions);
+  }
+
+  verificarAndamento(): Observable<any> {
+    return this.http.get<Observable<any>>(`/api/andamento/`);
+  }
+
+  buscarTimes(): Observable<any> {
+    return this.http.get<Observable<any>>(`/api/time/`);
+  }
+
+  buscarPartidas(): Observable<any> {
+    return this.http.get<Observable<any>>(`/api/partida/`);
+  }
+
 }

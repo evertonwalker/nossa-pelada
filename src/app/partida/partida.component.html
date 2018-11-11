@@ -173,56 +173,21 @@
               </div>
 
               <div class="container">
-                <button class="btn btn-success" type="button" mat-button matStepperNext>Próxima</button>
+                <button class="btn btn-success" type="button" mat-button (click)="finalizarPartida()">Próxima</button>
               </div>
             </mat-step>
             <mat-step label="Resultado e pontuar jogadores">
               <div class="divGrande">
                 <div class="row">
                   <div class="col-12 text-center mb-4">
-                    <h2>O time vencedor foi : {{ timeVencedor() }}</h2>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-12 text-center">
-                  <h5>Pontue os jogadores que participaram da pelada.</h5>
-                </div>
-              </div>
-
-
-              <div class="row mt-3 mb-4">
-
-                <div class="col-6">
-                  <div class="col-12 text-center mb-3"> <h4> {{ timeUm.nome }} </h4> </div>
-                  <div class="row" *ngFor="let jogador of timeUm.jogadores">
-                    <div class="col-6">
-                      {{ jogador.nome }}
-                    </div>
-                    <div class="col-6">
-                      <input type="text" class="form-control mt-2 mb-3" id="nomeTimeDois" [(ngModel)]="jogador.nota"
-                        name="jogador.nome" placeholder="Nota do jogador">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="col-12 text-center mb-3"> <h4>{{ timeDois.nome }} </h4> </div>
-                  <div class="row" *ngFor="let jogador of timeDois.jogadores">
-                    <div class="col-6">
-                      {{ jogador.nome }}
-                    </div>
-                    <div class="col-6">
-                      <input type="text" class="form-control mt-2 mb-3" id="nomeTimeDois" [(ngModel)]="jogador.nota"
-                        name="jogador.nome" placeholder="Nota do jogador">
-                    </div>
+                    <h2>{{ timeVencedor() }}</h2>
                   </div>
                 </div>
               </div>
 
 
               <div class="container">
-                <button class="btn btn-success" type="button" mat-button matStepperNext>Finalizar</button>
+                <button class="btn btn-success" type="button" mat-button routerLink="/" >Finalizar</button>
               </div>
             </mat-step>
           </mat-horizontal-stepper>

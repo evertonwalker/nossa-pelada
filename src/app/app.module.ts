@@ -17,6 +17,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { PartidaComponent } from './partida/partida.component';
 import { PartidaService } from './partida.service';
 import { JogadorService } from './jogador.service';
+import { VerPartidaComponent } from './ver-partida/ver-partida.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { JogadorService } from './jogador.service';
     JogadorComponent,
     FormJogadorComponent,
     PagamentoJogadorComponent,
-    PartidaComponent
+    PartidaComponent,
+    VerPartidaComponent
   ],
   imports: [
     BrowserModule,

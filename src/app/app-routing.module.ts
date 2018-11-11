@@ -5,6 +5,7 @@ import { JogadorComponent } from './jogador/jogador.component';
 import { FormJogadorComponent } from './form-jogador/form-jogador.component';
 import { PagamentoJogadorComponent } from './pagamento-jogador/pagamento-jogador.component';
 import { PartidaComponent } from './partida/partida.component';
+import { VerPartidaComponent } from './ver-partida/ver-partida.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
     { path: 'jogador', component: JogadorComponent },
     { path: 'jogador/new', component: FormJogadorComponent },
     { path: 'pagamento', component: PagamentoJogadorComponent },
-    { path: 'partida', component: PartidaComponent}
+    { path: 'partida', component: PartidaComponent },
+    { path: 'verpartida', component: VerPartidaComponent }
 ];
 
 
