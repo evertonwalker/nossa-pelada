@@ -28,6 +28,7 @@ export class VerPartidaComponent implements OnInit {
         this.partidaService.buscarPartidas()
           .subscribe(result => {
             this.partidas = result;
+            this.partidas = this.partidas.filter( p => p.timeVencedor !== null);
           }, error => console.log(error));
 
 

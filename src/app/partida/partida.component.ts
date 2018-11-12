@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Jogador } from '../models/jogador.model';
 import { JogadorService } from '../jogador.service';
 import { Time } from '../models/time.model';
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./partida.component.css'],
   providers: [JogadorService, PartidaService]
 })
-export class PartidaComponent implements OnInit {
+export class PartidaComponent implements OnInit, OnDestroy {
 
   jogadores: Jogador[];
   jogadoresSelecionados: Jogador[] = [];
@@ -55,6 +55,12 @@ export class PartidaComponent implements OnInit {
       .subscribe(resultado => {
         this.jogadores = resultado;
       }, error => console.log(error));
+  }
+
+  ngOnDestroy(){
+    if(this.partida.id_partida !== undefined){
+      this.finalizarPartida();
+    }
   }
 
   verificarQuantidadeJogadores() {
